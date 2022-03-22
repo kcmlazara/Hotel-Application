@@ -1,0 +1,5 @@
+<%= form_with model: [ hotel, Review.new ] do |form| %>
+Your Review:<br>
+<%= form.text_area :content_review, size: "20x5" %>
+<%= form.submit %>
+<% end %>

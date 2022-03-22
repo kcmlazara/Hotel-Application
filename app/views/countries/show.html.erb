@@ -1,0 +1,16 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @country %>
+
+<ul>
+      <% @country.hotels.each do |hotel| %>
+          <li><%= hotel.name %></li>
+      <% end %>
+</ul>
+
+<div>
+  <%= link_to "Edit this country", edit_country_path(@country) %> |
+  <%= link_to "Back to countries", countries_path %>
+
+  <%= button_to "Destroy this country", @country, method: :delete %>
+</div>
