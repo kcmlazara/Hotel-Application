@@ -1,12 +1,13 @@
+<%= turbo_stream_from @hotel %>
 <p style="color: green"><%= notice %></p>
 
 <%= render @hotel %>
 <%= render "hotels/reviews", hotel: @hotel %>
 
 <div>
-  <%= link_to "Edit this hotel", edit_hotel_path(@hotel) %> |
-  <%= link_to "Back to hotels", hotels_path %>
+  <%= link_to "Edit this hotel", edit_hotel_path(@hotel), class: "btn btn-light" %> |
+  <%= link_to "Back to hotels", hotels_path, class: "btn btn-light" %>
 
-  <%= button_to "Destroy this hotel", @hotel, method: :delete %>
+  <%= button_to "Destroy this hotel", @hotel, method: :delete, class: "btn btn-light text-danger" %>
   <!-- <%= link_to "delete", @hotel, data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %> -->
 </div>

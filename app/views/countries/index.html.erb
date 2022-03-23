@@ -1,20 +1,16 @@
 <p style="color: green"><%= notice %></p>
 
-<h1>Countries</h1>
+<h1>Countries <%= link_to "Add New Country", new_country_path, class: "btn btn-light" %></h1>
 
 <div id="countries">
   <% @countries.each do |country| %>
     <%= render country %>
     <p>
-      <%= link_to "Show this country", country %>
+      <%= link_to "Show this country", country, class: "btn btn-secondary" %>
     </p>
   <% end %>
 </div>
 
 <div>
-<%= link_to "New country", new_country_path %>
-</div>
-<br>
-<div>
-<%= link_to "Back to Adding a hotel", new_hotel_path %>
+<%= link_to "Back to Adding a hotel", new_hotel_path, class: "btn btn-light" %>
 </div>

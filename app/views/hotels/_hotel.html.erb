@@ -1,4 +1,4 @@
-<div id="<%= dom_id hotel %>">
+<!-- <div id="<%= dom_id hotel %>">
   <p>
     <strong>Name:</strong>
     <%= hotel.name %>
@@ -37,4 +37,21 @@
     <strong><%= pluralize hotel.reviews.count, "review" %></strong>
   </p>
 
+</div> -->
+
+<div class="card border-secondary mb-3" style="min-width: 350px;">
+  <div class="card-body">
+    <h5 class="card-title">Name: <%= hotel.name %></h5>
+    <p class="card-text">Description: <%= hotel.description %></p>
+    <p class="card-text">Address: <%= hotel.address %></p>
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">Country: <%= hotel.country.name %></li>
+    <li class="list-group-item">Price: <%= hotel.price %></li>
+    <li class="list-group-item">Contact Number: <%= hotel.contact_number %></li>
+  </ul>
+  <div class="card-body">
+    <h5 class="card-text">Added <%= time_tag hotel.created_at, "data-local": "time-ago" %></h5>
+    <h5 class="card-text"><%= pluralize hotel.reviews.count, "review" %></h5>
+  </div>
 </div>

@@ -9,8 +9,8 @@
 </ul>
 
 <div>
-  <%= link_to "Edit this country", edit_country_path(@country) %> |
-  <%= link_to "Back to countries", countries_path %>
+  <%= link_to "Edit this country", edit_country_path(@country), class: "btn btn-light" %> |
+  <%= link_to "Back to countries", countries_path, class: "btn btn-light" %>
 
-  <%= button_to "Destroy this country", @country, method: :delete %>
+  <%= button_to "Destroy this country", @country, method: :delete, class: "btn btn-light text-danger" %>
 </div>
