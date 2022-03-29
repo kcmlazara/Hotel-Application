@@ -2,13 +2,9 @@
 
 <h1>Hotels <%= link_to "Add New Hotel", new_hotel_path, class: "btn btn-light" %> </h1>
 
-<div id="hotels" class="d-flex justify-content-around flex-wrap">
-  <% @hotels.each do |hotel| %>
-  <div>
-    <%= render hotel %>
-    <div>
-     <%= link_to "Show this hotel", hotel, class: "btn btn-secondary ml-2" %>
-    </div>
-  </div>
+  <%= form_with(url: hotels_path, method: "GET", data: { turbo_frame: "hotels", turbo_action: "advance", controller: "form-submission"}) do |form| %>
+    <%= form.label :query, "Search by name:" %>
+    <%= form.text_field :query, data: { action: "input->form-submission#search" } %>
   <% end %>
-</div>
+
+<%= render "hotels"%>
