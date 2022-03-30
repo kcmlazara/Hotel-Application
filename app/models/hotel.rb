@@ -7,4 +7,15 @@ class Hotel < ApplicationRecord
   validates_presence_of :contact_number
   has_rich_text :description
   has_many :reviews, dependent: :destroy
+  after_update :send_updated_hotel_email
+  before_destroy :send_deleted_hotel_email
+
+  def send_updated_hotel_email
+    HotelsMailer.updated(self).deliver_later
+  end
+
+  def send_deleted_hotel_email
+    HotelsMailer.deleted(self.name).deliver_later
+  end
+
 end
