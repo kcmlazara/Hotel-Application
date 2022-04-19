@@ -1,5 +1,6 @@
-<%= form_with model: [ hotel, Review.new ] do |form| %>
+<%= form_with(model: [ hotel, Review.new ], data: { controller: "review-form"}) do |form| %>
 Your Review:<br>
-<%= form.text_area :content_review, size: "20x5" %>
+<%= form.text_area :content_review, size: "20x5", class: "form-control" ,placeholder: "Type your review....", data: { target: "review-form.content_review", action: "keyup->review-form#update"} %>
+<div data-target="review-form.characterCount"></div>
 <%= form.submit %>
 <% end %>
