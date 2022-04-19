@@ -38,6 +38,7 @@ class HotelsController < ApplicationController
 
     respond_to do |format|
       if @hotel.save
+        CreateNotificationJob.perform_in(30.seconds, @hotel.id)
         format.html { redirect_to hotel_url(@hotel), notice: "Hotel was successfully created." }
         format.json { render :show, status: :created, location: @hotel }
       else
@@ -51,6 +52,7 @@ class HotelsController < ApplicationController
   def update
     respond_to do |format|
       if @hotel.update(hotel_params)
+        UpdateNotificationJob.perform_in(30.seconds, @hotel.id)
         format.html { redirect_to hotel_url(@hotel), notice: "Hotel was successfully updated." }
         format.json { render :show, status: :ok, location: @hotel }
       else
@@ -62,8 +64,8 @@ class HotelsController < ApplicationController
 
   # DELETE /hotels/1 or /hotels/1.json
   def destroy
+    DeleteNotificationJob.perform_in(30.seconds, @hotel.name, @hotel.country.name)
     @hotel.destroy
-
     respond_to do |format|
       format.html { redirect_to hotels_url, notice: "Hotel was successfully destroyed." }
       format.json { head :no_content }

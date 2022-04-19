@@ -1,0 +1,10 @@
+<div>
+    <p><%= pluralize @notifications.count, "notification" %></p>
+<p>
+  <% @notifications.each do |notification| %>
+    <%= render notification %>
+    <!-- <%= render 'notification', notification: notification %> !-->
+    <%= link_to "Show Notification", notification_path(notification) %>
+  <% end %>
+</p>
+</div>
