@@ -1,4 +1,6 @@
-<div id="<%= dom_id(review)%>">
-<%= review.content_review %>
-- <%= time_tag review.created_at, "data-local": "time-ago" %>
+<div id="<%= dom_id(review)%>" data-controller="inline-edit">
+    <div data-target="inline-edit.content_review" data-action="click->inline-edit#toggle"><%= review.content_review %></div>
+    <div>- <%= time_tag review.created_at, "data-local": "time-ago" %></div>
+
+    <%= render "reviews/new", review: review, class: "d-none" %>
 </div>
