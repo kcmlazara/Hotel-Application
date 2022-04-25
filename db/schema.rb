@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_04_13_044711) do
+ActiveRecord::Schema[7.0].define(version: 2022_04_20_154801) do
   create_table "action_text_rich_texts", force: :cascade do |t|
     t.string "name", null: false
     t.text "body"
@@ -83,8 +83,17 @@ ActiveRecord::Schema[7.0].define(version: 2022_04_13_044711) do
     t.index ["hotel_id"], name: "index_reviews_on_hotel_id"
   end
 
+  create_table "tours", force: :cascade do |t|
+    t.string "name"
+    t.integer "country_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["country_id"], name: "index_tours_on_country_id"
+  end
+
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "hotels", "countries"
   add_foreign_key "reviews", "hotels"
+  add_foreign_key "tours", "countries"
 end

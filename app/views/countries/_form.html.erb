@@ -16,6 +16,23 @@
     <%= form.text_field :name %>
   </div>
 
+<h2> Tour </h2>
+<div data-controller="nested-form">
+  <template data-target="nested-form.template">
+        <%= form.fields_for :tours, Tour.new, child_index: 'NEW_RECORD' do |tour| %>
+        <%= render "tour_fields", form: tour %>
+        <% end %>
+  </template>
+  <div>
+        <%= form.fields_for :tours do |tour| %>
+        <%= render "tour_fields", form: tour %>
+        <% end %>
+  </div>
+  <div class="mb-3" data-target="nested-form.links">
+  <%= link_to "Add Task", "#", class: "btn btn-outline-primary", data: { action: "click->nested-form#add_association"}%>
+  </div>
+</div>
+
   <div>
     <%= form.submit %>
   </div>

@@ -14,10 +14,14 @@ class CountriesController < ApplicationController
   # GET /countries/new
   def new
     @country = Country.new
+    @country.tours.new
   end
 
   # GET /countries/1/edit
   def edit
+    if @country.tours.empty?
+        @country.tours.new
+    end
   end
 
   # POST /countries or /countries.json
@@ -66,6 +70,6 @@ class CountriesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def country_params
-      params.require(:country).permit(:name)
+      params.require(:country).permit(:name, tours_attributes: [:id, :name, :_destroy])
     end
 end

@@ -4,7 +4,7 @@
   <% @notifications.each do |notification| %>
     <%= render notification %>
     <!-- <%= render 'notification', notification: notification %> !-->
-    <%= link_to "Show Notification", notification_path(notification) %>
+    <%= link_to "Show Notification", notification_path(notification), class: "btn btn-secondary" %>
   <% end %>
 </p>
 </div>

@@ -1,4 +1,6 @@
 class Country < ApplicationRecord
-    validates_presence_of :name
+    validates :name, uniqueness: true
     has_many :hotels, dependent: :destroy
+    has_many :tours, inverse_of: :country
+    accepts_nested_attributes_for :tours, reject_if: :all_blank, allow_destroy: true
 end
