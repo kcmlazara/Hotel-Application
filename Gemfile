@@ -75,3 +75,4 @@ group :test do
 end
 
 gem "sidekiq", "~> 6.4"
+gem "acts_as_list", "~> 1.0"

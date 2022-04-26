@@ -1,0 +1,13 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Car Rentals <%= link_to "Add New Car Rental", new_car_path, class: "btn btn-light" %></h1>
+
+<div data-controller= "drag" data-drag-url="/cars/:id/move">
+  <% @cars.order(position: :asc).each do |car| %>
+        <div data-id="<%= car.id %>" class="card card-body mb-4">
+        <b>Car Name:</b><%= car.name %> 
+        <br>
+        <b>Country:</b><%= car.country.name %>
+        </div>
+  <% end %>
+</div>

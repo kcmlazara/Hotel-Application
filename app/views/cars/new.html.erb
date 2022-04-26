@@ -1,0 +1,35 @@
+<h1>New Car for Rent</h1>
+
+<%= form_with(model: @car) do |form| %>
+    <% if @car.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(@car.errors.count, "error") %> prohibited this car from being saved:</h2>
+
+      <ul>
+        <% @car.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+  <div>
+    <%= form.label :name, style: "display: block" %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div>
+    <%= form.label :country_id, style: "display: block" %>
+   <%= form.collection_select :country_id, Country.order(:name),:id,:name, include_blank: true %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
+
+<br>
+
+<div>
+  <%= link_to "Back to cars", cars_path, class: "btn btn-light" %>
+</div>
