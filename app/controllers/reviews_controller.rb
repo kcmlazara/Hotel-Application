@@ -1,8 +1,12 @@
 class ReviewsController < ApplicationController
     before_action :set_hotel
-
+    before_action :authenticate_user!, except: [:index, :show]
+    
     def create
-        review = @hotel.reviews.create! params.required(:review).permit(:content_review)
+        review_params = params.required(:review).permit(:content_review)
+        review_params[:user_id] = current_user.id
+        review = @hotel.reviews.create!(review_params)
+        #review = @hotel.reviews.create! params.required(:review).permit(:content_review)
         ReviewsMailer.submitted(review).deliver_later
         redirect_to @hotel
     end

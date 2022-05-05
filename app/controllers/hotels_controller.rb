@@ -1,6 +1,6 @@
 class HotelsController < ApplicationController
   before_action :set_hotel, only: %i[ show edit update destroy ]
-
+  before_action :authenticate_user!, except: [:index, :show]
   # GET /hotels or /hotels.json
   #def index
   #  @hotels = Hotel.all
@@ -34,7 +34,7 @@ class HotelsController < ApplicationController
 
   # POST /hotels or /hotels.json
   def create
-    @hotel = Hotel.new(hotel_params)
+    @hotel = current_user.hotels.new(hotel_params)
 
     respond_to do |format|
       if @hotel.save

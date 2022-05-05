@@ -1,6 +1,6 @@
 class CountriesController < ApplicationController
   before_action :set_country, only: %i[ show edit update destroy ]
-
+  before_action :authenticate_user!, except: [:index, :show]
   # GET /countries or /countries.json
   def index
     @countries = Country.all
@@ -26,7 +26,7 @@ class CountriesController < ApplicationController
 
   # POST /countries or /countries.json
   def create
-    @country = Country.new(country_params)
+    @country = current_user.countries.new(country_params)
 
     respond_to do |format|
       if @country.save

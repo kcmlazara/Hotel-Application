@@ -3,4 +3,5 @@ class Car < ApplicationRecord
   acts_as_list
   validates_presence_of :name
   validates_presence_of :country_id
+  belongs_to :user
 end

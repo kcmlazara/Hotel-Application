@@ -1,4 +1,5 @@
 class NotificationsController < ApplicationController
+    before_action :authenticate_user!, except: [:index, :show]
 
     def index
         @notifications = Notification.all.order("created_at DESC")

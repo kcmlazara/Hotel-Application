@@ -30,11 +30,23 @@
             <%= link_to "Countries", countries_path, class: "nav-item nav-link" %>
             <%= link_to "Notifications", notifications_path, class: "nav-item nav-link" %>
             <%= link_to "Car Rentals", cars_path, class: "nav-item nav-link" %>
+            
+            <% if user_signed_in? %>
+            <%= link_to current_user.email, edit_user_registration_path, class: "nav-item nav-link", data: { turbo: false } %>
+            <%= link_to "Log out", destroy_user_session_path, class: "nav-item nav-link", data: { turbo: false }, method: :delete %>
+            <% else %>
+            <%= link_to "Sign up", new_user_registration_path, class: "nav-item nav-link", data: { turbo: false } %>
+            <%= link_to "Log in", new_user_session_path, class: "nav-item nav-link", data: { turbo: false } %>
+            <% end %>
+            
           </div>
         </div>
       </nav>
-
-    <%= yield %>
+    <div class="container">
+      <% if notice %> <div class="alert alert-info"><%= notice %></div> <% end %>
+      <% if alert %> <div class="alert alert-warning"><%= alert %></div> <% end %>
+     <%= yield %>
+    </div>
   </body>
 </html>
 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_04_25_163940) do
+ActiveRecord::Schema[7.0].define(version: 2022_05_03_144226) do
   create_table "action_text_rich_texts", force: :cascade do |t|
     t.string "name", null: false
     t.text "body"
@@ -58,6 +58,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_04_25_163940) do
     t.integer "position"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "user_id"
     t.index ["country_id"], name: "index_cars_on_country_id"
   end
 
@@ -65,6 +66,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_04_25_163940) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "user_id"
   end
 
   create_table "hotels", force: :cascade do |t|
@@ -76,6 +78,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_04_25_163940) do
     t.string "contact_number"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "user_id"
     t.index ["country_id"], name: "index_hotels_on_country_id"
   end
 
@@ -92,6 +95,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_04_25_163940) do
     t.text "content_review"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "user_id"
     t.index ["hotel_id"], name: "index_reviews_on_hotel_id"
   end
 
@@ -101,6 +105,18 @@ ActiveRecord::Schema[7.0].define(version: 2022_04_25_163940) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["country_id"], name: "index_tours_on_country_id"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
